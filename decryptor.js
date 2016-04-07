@@ -1,6 +1,6 @@
 'use strict';
 
-let frequencies = {
+var frequencies = {
     a: 8.04,
     b: 1.48,
     c: 3.34,
@@ -31,6 +31,22 @@ let frequencies = {
 
 function decrypt() {
     
+}
+
+function entropy(str, freqArr) {
+    str = str.toLowerCase();
+    var sum = 0;
+    var nonAlphabetical = 0;
+    for(var i = 0, len = str.length; i < len; i++){
+        var charIndex = str.charCodeAt(i);
+        if( charIndex >=65 && charIndex <= 90){
+            var charFreq = freqArr[charIndex - 65];
+            sum += Math.log(charFreq);    
+        } else {
+            nonAlphabetical++;
+        }
+    }
+    return -(sum * (len - nonAlphabetical)) / Math.log(2);
 }
 
 module.exports = decrypt;
