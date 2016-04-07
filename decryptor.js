@@ -33,20 +33,34 @@ function decrypt() {
     
 }
 
-function entropy(str, freqArr) {
+function getAllShifts() {
+    
+}
+
+// Cross entropy: https://en.wikipedia.org/wiki/Cross_entropy
+function crossEntropy(str, freqArr) {
     str = str.toLowerCase();
     var sum = 0;
     var nonAlphabetical = 0;
-    for(var i = 0, len = str.length; i < len; i++){
+    var len = str.length;
+    for(var i = 0; i < len; i++){
         var charIndex = str.charCodeAt(i);
         if( charIndex >=65 && charIndex <= 90){
             var charFreq = freqArr[charIndex - 65];
-            sum += Math.log(charFreq);    
+            sum += log2(charFreq);    
         } else {
             nonAlphabetical++;
         }
     }
-    return -(sum * (len - nonAlphabetical)) / Math.log(2);
+    return -(sum / (len - nonAlphabetical));
+}
+
+function log2(val){
+    if(Math.log2){
+        return Math.log2(val);
+    } else {
+        return Math.log(val) / Math.log(2);
+    }
 }
 
 module.exports = decrypt;
