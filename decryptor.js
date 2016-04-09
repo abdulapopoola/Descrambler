@@ -1,5 +1,11 @@
 'use strict';
 
+const UPPERCASE_FIRST_CHARCODE = 65; //A
+const UPPERCASE_LAST_CHARCODE = 90; //Z
+const LOWERCASE_FIRST_CHARCODE = 97; //a
+const LOWERCASE_LAST_CHARCODE = 122; //z
+const ALPHABET_COUNT = 26;
+
 var frequencies = {
     a: 8.04,
     b: 1.48,
@@ -37,6 +43,32 @@ function getAllShifts() {
     
 }
 
+function modulo(dividend, divisor){
+    
+}
+
+//Shifts a str by shiftCount deplacement e.g. shift('aa', 2) -> 'cc'
+function shift(str, shiftCount) {
+    var chars = str.split('');
+    var shifted = [];
+    
+    for(let i = 0, len = chars.length; i < len; i++){
+        let charCode = chars[i].charCodeAt(0);
+        if(isLowerCase(charCode)){
+            let newCharCodeOffset = modulo(charCode - LOWERCASE_FIRST_CHARCODE - shiftCount);
+            let newChar = String.fromCharCode(newCharCodeOffset + LOWERCASE_FIRST_CHARCODE);
+            shifted.push(newChar);
+        } else if(isUpperCase(charCode)) {
+            let newCharCodeOffset = modulo(charCode - UPPERCASE_FIRST_CHARCODE - shiftCount);
+            let newChar = String.fromCharCode(newCharCodeOffset + UPPERCASE_FIRST_CHARCODE);
+            shifted.push(newChar);            
+        } else {
+            shifted.push(chars[i]);
+        }
+    }
+    return shifted.join('');
+}
+
 // Cross entropy: https://en.wikipedia.org/wiki/Cross_entropy
 function crossEntropy(str, freqArr) {
     str = str.toLowerCase();
@@ -61,6 +93,14 @@ function log2(val){
     } else {
         return Math.log(val) / Math.log(2);
     }
+}
+
+function isLowerCase(char){
+    return char >= LOWERCASE_FIRST_CHARCODE && char <= LOWERCASE_LAST_CHARCODE;
+}
+
+function isUpperCase(char){
+    return char >= UPPERCASE_FIRST_CHARCODE && char <= UPPERCASE_LAST_CHARCODE;
 }
 
 module.exports = decrypt;
