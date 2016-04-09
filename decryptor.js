@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 const UPPERCASE_FIRST_CHARCODE = 65; //A
 const UPPERCASE_LAST_CHARCODE = 90; //Z
@@ -35,16 +35,37 @@ var frequencies = {
     z: 0.09
 };
 
-function decrypt() {
+function decrypt(str) {
+    let normalizedFreqs = values(frequencies).map(function(freq){
+        return freq / 100;
+    });
     
+    let possibilities = getAllShifts(str);
+    let entropies = [];
+    for(let i = 0, len = Object.keys(possibilities).length; i < len; i++){
+        let entropy = crossEntropy(possibilities[i], normalizedFreqs);
+        entropies.push([i, entropy]);    
+    }    
+    
+    entropies.sort(function(x, y) {
+		// Compare by lowest entropy, break ties by lowest shift
+		if (x[1] < y[1]) return -1;
+		else if (x[1] > y[1]) return 1;
+		else if (x[0] < y[0]) return -1;
+		else if (x[0] > y[0]) return 1;
+		else return 0;
+	});
+    
+    let bestAnswerIndex = entropies[0][0];
+    return possibilities[bestAnswerIndex];
 }
 
-function getAllShifts() {
-    
-}
-
-function modulo(dividend, divisor){
-    
+function getAllShifts(str) {
+    let results = {};
+    for(let i = 0; i < ALPHABET_COUNT; i++){
+        results[i] = shift(str, i);
+    }
+    return results;
 }
 
 //Shifts a str by shiftCount deplacement e.g. shift('aa', 2) -> 'cc'
@@ -55,11 +76,11 @@ function shift(str, shiftCount) {
     for(let i = 0, len = chars.length; i < len; i++){
         let charCode = chars[i].charCodeAt(0);
         if(isLowerCase(charCode)){
-            let newCharCodeOffset = modulo(charCode - LOWERCASE_FIRST_CHARCODE - shiftCount);
+            let newCharCodeOffset = modulo(charCode - LOWERCASE_FIRST_CHARCODE - shiftCount, ALPHABET_COUNT);
             let newChar = String.fromCharCode(newCharCodeOffset + LOWERCASE_FIRST_CHARCODE);
             shifted.push(newChar);
         } else if(isUpperCase(charCode)) {
-            let newCharCodeOffset = modulo(charCode - UPPERCASE_FIRST_CHARCODE - shiftCount);
+            let newCharCodeOffset = modulo(charCode - UPPERCASE_FIRST_CHARCODE - shiftCount, ALPHABET_COUNT);
             let newChar = String.fromCharCode(newCharCodeOffset + UPPERCASE_FIRST_CHARCODE);
             shifted.push(newChar);            
         } else {
@@ -77,8 +98,8 @@ function crossEntropy(str, freqArr) {
     var len = str.length;
     for(var i = 0; i < len; i++){
         var charIndex = str.charCodeAt(i);
-        if( charIndex >=65 && charIndex <= 90){
-            var charFreq = freqArr[charIndex - 65];
+        if( charIndex >=97 && charIndex <= 122){
+            var charFreq = freqArr[charIndex - 97];
             sum += log2(charFreq);    
         } else {
             nonAlphabetical++;
@@ -103,4 +124,18 @@ function isUpperCase(char){
     return char >= UPPERCASE_FIRST_CHARCODE && char <= UPPERCASE_LAST_CHARCODE;
 }
 
-module.exports = decrypt;
+function modulo(dividend, divisor){
+    let modulo = dividend % divisor;
+    if(modulo < 0){
+        //ensure it wraps around
+        modulo += dividend;
+    }
+    return modulo;
+}
+
+function values(obj){
+    return Object.keys(obj).map(key => obj[key]);
+}
+
+decrypt('GUVF VF FBZR FNZCYR GRKG URER.');
+//module.exports = decrypt;
