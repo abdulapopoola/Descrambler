@@ -1,2 +1,3 @@
-# CaeserDecryptor
-A JavaScript implementation for automatically decrypting Caeser ciphers
+# descrambler
+
+Automatically descramble jumbled text
