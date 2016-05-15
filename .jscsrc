@@ -1,0 +1,7 @@
+{
+    "preset": "grunt",
+    "requireCurlyBraces": null,
+    "validateIndentation": 4,
+    "disallowTrailingWhitespace": true,
+    "maximumLineLength": 120
+}
