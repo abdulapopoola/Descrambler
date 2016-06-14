@@ -1,3 +1,3 @@
 # descrambler
 
-Automatically descramble jumbled text
+Automatically descramble jumbled text using entropy calculations.
