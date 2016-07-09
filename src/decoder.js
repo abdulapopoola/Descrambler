@@ -45,3 +45,5 @@ function isLowerCase(char) {
 function isUpperCase(char) {
     return char >= UPPERCASE_FIRST_CHARCODE && char <= UPPERCASE_LAST_CHARCODE;
 }
+
+module.exports = isLowerCase;

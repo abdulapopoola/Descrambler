@@ -3,15 +3,16 @@ module.exports = function(config) {
         frameworks: ['browserify', 'jasmine'],
         files: [
             'src/**/*.js',
-            'test/**/*_spec.js'
+            'tests/**/*_spec.js'
         ],
         preprocessors: {
-            'test/**/*.js': ['jshint', 'browserify'],
+            'tests/**/*.js': ['jshint', 'browserify'],
             'src/**/*.js': ['jshint', 'browserify']
         },
         browsers: ['PhantomJS'],
         browserify: {
             debug: true
-        }
+        },
+        port: 9870
     });
 };
