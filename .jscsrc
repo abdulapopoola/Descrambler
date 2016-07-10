@@ -2,6 +2,8 @@
     "preset": "google",
     "requireCurlyBraces": null,
     "validateIndentation": 4,
+    "disallowSpacesInAnonymousFunctionExpression": null,
+    "disallowSpacesInFunctionExpression": null,
     "disallowTrailingWhitespace": true,
     "maximumLineLength": 120
 }
