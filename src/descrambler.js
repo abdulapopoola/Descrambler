@@ -1,5 +1,7 @@
 'use strict';
 
+var utils = require('./utils');
+
 var LOWERCASE_A_CHARCODE = 97; //a
 var LOWERCASE_Z_CHARCODE = 122; //z
 var UPPERCASE_A_CHARCODE = 65; //A
@@ -47,10 +49,10 @@ function crossEntropy(str, freqArr) {
         var charFreq;
         if (charCode >= UPPERCASE_A_CHARCODE && charCode <= UPPERCASE_Z_CHARCODE) {
             charFreq = freqArr[charCode - UPPERCASE_A_CHARCODE];
-            sum += log2(charFreq);
+            sum += utils.log2(charFreq);
         } else if (charCode >= LOWERCASE_A_CHARCODE && charCode <= LOWERCASE_Z_CHARCODE) {
             charFreq = freqArr[charCode - LOWERCASE_A_CHARCODE];
-            sum += log2(charFreq);
+            sum += utils.log2(charFreq);
         } else {
             nonAlphabetical++;
         }
@@ -60,7 +62,7 @@ function crossEntropy(str, freqArr) {
 }
 
 function decryptMany(possibilities) {
-    var normalizedFreqs = values(UNIGRAM_FREQUENCIES).map(function(freq) {
+    var normalizedFreqs = utils.values(UNIGRAM_FREQUENCIES).map(function(freq) {
         return freq / 100;
     });
 
@@ -106,18 +108,4 @@ function isGibberish(str, tolerance) {
     return nonAlphabetical > str.length * tolerance;
 }
 
-function log2(val) {
-    if (Math.log2) {
-        return Math.log2(val);
-    } else {
-        return Math.log(val) / Math.log(2);
-    }
-}
-
-function values(obj) {
-    return Object.keys(obj).map(function(key) {
-        return obj[key];
-    });
-}
-
-exports.decryptMany = decryptMany;
+module.exports = decryptMany;

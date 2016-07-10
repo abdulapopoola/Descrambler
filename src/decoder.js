@@ -1,6 +1,6 @@
 'use strict';
 
-var UPPERCASE_FIRST_CHARCODE = 65; //A
+var utils = require('./utils');
 var UPPERCASE_LAST_CHARCODE = 90; //Z
 var LOWERCASE_FIRST_CHARCODE = 97; //a
 var LOWERCASE_LAST_CHARCODE = 122; //z
@@ -16,7 +16,7 @@ function getAllShifts(str) {
 
 //Shifts a str by shiftCount deplacement e.g. shift('ab', 2) -> 'cd'
 function shift(str, shiftCount) {
-    if (!isString(str)) {
+    if (!utils.isString(str)) {
         return str;
     }
 
@@ -31,31 +31,19 @@ function shift(str, shiftCount) {
         var charCode = chars[i].charCodeAt(0);
         var newCharCodeOffset;
         var newChar;
-        if (isLowerCaseCharCode(charCode)) {
+        if (utils.isLowerCaseCharCode(charCode)) {
             newCharCodeOffset = (charCode - LOWERCASE_FIRST_CHARCODE + shiftCount) % ALPHABET_COUNT;
             newChar = String.fromCharCode(newCharCodeOffset + LOWERCASE_FIRST_CHARCODE);
             shifted.push(newChar);
-        } else if (isUpperCaseCharCode(charCode)) {
-            newCharCodeOffset = (charCode - UPPERCASE_FIRST_CHARCODE + shiftCount) % ALPHABET_COUNT;
-            newChar = String.fromCharCode(newCharCodeOffset + UPPERCASE_FIRST_CHARCODE);
+        } else if (utils.isUpperCaseCharCode(charCode)) {
+            newCharCodeOffset = (charCode - utils.UPPERCASE_FIRST_CHARCODE + shiftCount) % ALPHABET_COUNT;
+            newChar = String.fromCharCode(newCharCodeOffset + utils.UPPERCASE_FIRST_CHARCODE);
             shifted.push(newChar);
         } else {
             shifted.push(chars[i]);
         }
     }
     return shifted.join('');
-}
-
-function isLowerCaseCharCode(char) {
-    return char >= LOWERCASE_FIRST_CHARCODE && char <= LOWERCASE_LAST_CHARCODE;
-}
-
-function isUpperCaseCharCode(char) {
-    return char >= UPPERCASE_FIRST_CHARCODE && char <= UPPERCASE_LAST_CHARCODE;
-}
-
-function isString(val) {
-    return typeof val === 'string';
 }
 
 module.exports = {
