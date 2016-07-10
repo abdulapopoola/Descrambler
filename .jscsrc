@@ -1,5 +1,5 @@
 {
-    "preset": "grunt",
+    "preset": "google",
     "requireCurlyBraces": null,
     "validateIndentation": 4,
     "disallowTrailingWhitespace": true,

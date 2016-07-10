@@ -44,11 +44,12 @@ function crossEntropy(str, freqArr) {
     var len = str.length;
     for (var i = 0; i < len; i++) {
         var charCode = str.charCodeAt(i);
+        var charFreq;
         if (charCode >= UPPERCASE_A_CHARCODE && charCode <= UPPERCASE_Z_CHARCODE) {
-            var charFreq = freqArr[charCode - UPPERCASE_A_CHARCODE];
+            charFreq = freqArr[charCode - UPPERCASE_A_CHARCODE];
             sum += log2(charFreq);
         } else if (charCode >= LOWERCASE_A_CHARCODE && charCode <= LOWERCASE_Z_CHARCODE) {
-            var charFreq = freqArr[charCode - LOWERCASE_A_CHARCODE];
+            charFreq = freqArr[charCode - LOWERCASE_A_CHARCODE];
             sum += log2(charFreq);
         } else {
             nonAlphabetical++;
@@ -115,7 +116,7 @@ function log2(val) {
 
 function values(obj) {
     return Object.keys(obj).map(function(key) {
-        return obj[key]
+        return obj[key];
     });
 }
 
