@@ -1,17 +1,18 @@
 'use strict';
 
-var UPPERCASE_FIRST_CHARCODE = 65; //A
-var UPPERCASE_LAST_CHARCODE = 90; //Z
-var LOWERCASE_FIRST_CHARCODE = 97; //a
-var LOWERCASE_LAST_CHARCODE = 122; //z
-var ALPHABET_COUNT = 26;
+var constants = require('./constants');
+var LOWERCASE_A_CHARCODE = constants.LOWERCASE_A_CHARCODE;
+var LOWERCASE_Z_CHARCODE = constants.LOWERCASE_Z_CHARCODE;
+var UPPERCASE_A_CHARCODE = constants.UPPERCASE_A_CHARCODE;
+var UPPERCASE_Z_CHARCODE = constants.UPPERCASE_Z_CHARCODE;
+var ALPHABET_COUNT = constants.ALPHABET_COUNT;
 
 function isLowerCaseCharCode(char) {
-    return char >= LOWERCASE_FIRST_CHARCODE && char <= LOWERCASE_LAST_CHARCODE;
+    return char >= LOWERCASE_A_CHARCODE && char <= LOWERCASE_Z_CHARCODE;
 }
 
 function isUpperCaseCharCode(char) {
-    return char >= UPPERCASE_FIRST_CHARCODE && char <= UPPERCASE_LAST_CHARCODE;
+    return char >= UPPERCASE_A_CHARCODE && char <= UPPERCASE_Z_CHARCODE;
 }
 
 function isString(val) {
@@ -36,7 +37,6 @@ module.exports = {
     isLowerCaseCharCode: isLowerCaseCharCode,
     isUpperCaseCharCode: isUpperCaseCharCode,
     isString: isString,
-    UPPERCASE_FIRST_CHARCODE: UPPERCASE_FIRST_CHARCODE,
     log2: log2,
     values: values
 };

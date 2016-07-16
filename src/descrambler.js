@@ -1,11 +1,12 @@
 'use strict';
 
 var utils = require('./utils');
+var constants = require('./constants');
 
-var LOWERCASE_A_CHARCODE = 97; //a
-var LOWERCASE_Z_CHARCODE = 122; //z
-var UPPERCASE_A_CHARCODE = 65; //A
-var UPPERCASE_Z_CHARCODE = 90; //Z
+var LOWERCASE_A_CHARCODE = constants.LOWERCASE_A_CHARCODE;
+var LOWERCASE_Z_CHARCODE = constants.LOWERCASE_Z_CHARCODE;
+var UPPERCASE_A_CHARCODE = constants.UPPERCASE_A_CHARCODE;
+var UPPERCASE_Z_CHARCODE = constants.UPPERCASE_Z_CHARCODE;
 
 var UNIGRAM_FREQUENCIES = {
     a: 8.04,
