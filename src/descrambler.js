@@ -2,43 +2,14 @@
 
 var utils = require('./utils');
 var constants = require('./constants');
-
 var LOWERCASE_A_CHARCODE = constants.LOWERCASE_A_CHARCODE;
 var LOWERCASE_Z_CHARCODE = constants.LOWERCASE_Z_CHARCODE;
 var UPPERCASE_A_CHARCODE = constants.UPPERCASE_A_CHARCODE;
 var UPPERCASE_Z_CHARCODE = constants.UPPERCASE_Z_CHARCODE;
-
-var UNIGRAM_FREQUENCIES = {
-    a: 8.04,
-    b: 1.48,
-    c: 3.34,
-    d: 3.82,
-    e: 12.49,
-    f: 2.40,
-    g: 1.87,
-    h: 5.05,
-    i: 7.57,
-    j: 0.16,
-    k: 0.54,
-    l: 4.07,
-    m: 2.51,
-    n: 7.23,
-    o: 7.64,
-    p: 2.14,
-    q: 0.12,
-    r: 6.28,
-    s: 6.51,
-    t: 9.28,
-    u: 2.73,
-    v: 1.05,
-    w: 1.68,
-    x: 0.23,
-    y: 1.66,
-    z: 0.09
-};
+var UNIGRAM_FREQUENCIES =  constants.UNIGRAM_FREQUENCIES;
 
 function crossEntropy(str, freqArr) {
-    if (isGibberish(str)) {
+    if (utils.isGibberish(str)) {
         return Infinity;
     }
 
@@ -70,7 +41,7 @@ function decryptMany(possibilities) {
     var entropies = [];
     for (var i = 0, len = possibilities.length; i < len; i++) {
         var entropy = crossEntropy(possibilities[i], normalizedFreqs);
-        var symbolCount = nonAlphaSymbolCount(possibilities[i]);
+        var symbolCount = utils.nonAlphabeticalCharCount(possibilities[i]);
         entropies.push([i, entropy, symbolCount]);
     }
 
@@ -86,27 +57,6 @@ function decryptMany(possibilities) {
     });
 
     return entropies;
-}
-
-function nonAlphaSymbolCount(str) {
-    var strippedStr = str.replace(/\s/g, '').toLowerCase();
-    var strLen = strippedStr.length;
-
-    var count = 0;
-    for (var i = 0; i < strLen; i++) {
-        var charCode = strippedStr.charCodeAt(i);
-        if (charCode < LOWERCASE_A_CHARCODE || charCode > LOWERCASE_Z_CHARCODE) {
-            count++;
-        }
-    }
-
-    return count;
-}
-
-function isGibberish(str, tolerance) {
-    var nonAlphabetical = nonAlphaSymbolCount(str);
-    tolerance = tolerance || 0.2;
-    return nonAlphabetical > str.length * tolerance;
 }
 
 module.exports = decryptMany;
