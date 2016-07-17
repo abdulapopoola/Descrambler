@@ -6,9 +6,13 @@ var LOWERCASE_A_CHARCODE = constants.LOWERCASE_A_CHARCODE;
 var LOWERCASE_Z_CHARCODE = constants.LOWERCASE_Z_CHARCODE;
 var UPPERCASE_A_CHARCODE = constants.UPPERCASE_A_CHARCODE;
 var UPPERCASE_Z_CHARCODE = constants.UPPERCASE_Z_CHARCODE;
-var UNIGRAM_FREQUENCIES =  constants.UNIGRAM_FREQUENCIES;
+var UNIGRAM_FREQUENCIES = constants.UNIGRAM_FREQUENCIES;
 
 function crossEntropy(str, freqArr) {
+    if (!Array.isArray(freqArr) || !utils.isString(str)) {
+        return;
+    }
+
     if (utils.isGibberish(str)) {
         return Infinity;
     }
@@ -34,7 +38,11 @@ function crossEntropy(str, freqArr) {
 }
 
 function decryptMany(possibilities) {
-    var normalizedFreqs = utils.values(UNIGRAM_FREQUENCIES).map(function(freq) {
+    if (!Array.isArray(possibilities)) {
+        return;
+    }
+
+    var normalizedFreqs = utils.values(UNIGRAM_FREQUENCIES).map(function (freq) {
         return freq / 100;
     });
 
@@ -45,7 +53,8 @@ function decryptMany(possibilities) {
         entropies.push([i, entropy, symbolCount]);
     }
 
-    entropies.sort(function(x, y) {
+    entropies.sort(function (x, y) {
+        // should this be exposed to the user?
         // Compare by lowest entropy, then by symbol count and finally break ties by selecting chars index order
         if (x[1] < y[1]) return -1;
         else if (x[1] > y[1]) return 1;
@@ -59,4 +68,8 @@ function decryptMany(possibilities) {
     return entropies;
 }
 
-module.exports = decryptMany;
+module.exports = {
+    decryptMany: decryptMany,
+    crossEntropy: crossEntropy
+};
+
