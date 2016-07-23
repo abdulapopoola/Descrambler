@@ -62,7 +62,9 @@ describe('Decoder', function () {
 
     describe('GetAllShifts', function () {
         it('returns an array', function () {
-            expect(getAllShifts('aaa')).toBeDefined();
+            var shifts = getAllShifts('aaa');
+            expect(shifts).toBeDefined();
+            expect(Array.isArray(shifts)).toBe(true);
         });
     });
 });
