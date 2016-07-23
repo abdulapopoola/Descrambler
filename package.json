@@ -26,7 +26,6 @@
   "homepage": "https://github.com/abdulapopoola/Descrambler#readme",
   "devDependencies": {
     "browserify": "^13.0.1",
-    "eslint": "^2.10.1",
     "jasmine-core": "^2.4.1",
     "jscs": "^3.0.3",
     "karma": "^0.13.22",
@@ -35,7 +34,6 @@
     "karma-jshint-preprocessor": "0.0.6",
     "karma-phantomjs-launcher": "^1.0.0",
     "phantomjs-prebuilt": "^2.1.7",
-    "sinon": "^1.17.4",
     "watchify": "^3.7.0"
   }
 }
