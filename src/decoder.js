@@ -4,11 +4,12 @@ var utils = require('./utils');
 var constants = require('./constants');
 var LOWERCASE_A_CHARCODE = constants.LOWERCASE_A_CHARCODE;
 var LOWERCASE_Z_CHARCODE = constants.LOWERCASE_Z_CHARCODE;
+var UPPERCASE_A_CHARCODE = constants.UPPERCASE_A_CHARCODE;
 var UPPERCASE_Z_CHARCODE = constants.UPPERCASE_Z_CHARCODE;
 var ALPHABET_COUNT = constants.ALPHABET_COUNT;
 
 function getAllShifts(str) {
-    var results = {};
+    var results = [];
     for (var i = 0; i < ALPHABET_COUNT; i++) {
         results[i] = shift(str, i);
     }
@@ -37,8 +38,8 @@ function shift(str, shiftCount) {
             newChar = String.fromCharCode(newCharCodeOffset + LOWERCASE_A_CHARCODE);
             shifted.push(newChar);
         } else if (utils.isUpperCaseCharCode(charCode)) {
-            newCharCodeOffset = (charCode - utils.UPPERCASE_FIRST_CHARCODE + shiftCount) % ALPHABET_COUNT;
-            newChar = String.fromCharCode(newCharCodeOffset + utils.UPPERCASE_FIRST_CHARCODE);
+            newCharCodeOffset = (charCode - UPPERCASE_A_CHARCODE + shiftCount) % ALPHABET_COUNT;
+            newChar = String.fromCharCode(newCharCodeOffset + UPPERCASE_A_CHARCODE);
             shifted.push(newChar);
         } else {
             shifted.push(chars[i]);

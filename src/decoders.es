@@ -7,7 +7,7 @@ const LOWERCASE_LAST_CHARCODE = 122; //z
 const ALPHABET_COUNT = 26;
 
 function getAllShifts(str) {
-    let results = {};
+    let results = [];
     for (let i = 0; i < ALPHABET_COUNT; i++) {
         results[i] = shift(str, i);
     }
