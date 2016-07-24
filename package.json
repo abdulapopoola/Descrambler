@@ -5,8 +5,10 @@
   "main": "decoders.js",
   "scripts": {
     "docs": "jsdoc2md src/*.js > docs/api.md",
-    "lint": "jshint **.js",
-    "test": "karma start"
+    "lint": "jshint src tests",
+    "test": "karma start",
+    "build": "browserify src/caeser.js > caeser.js",
+    "build:min": "browserify src/caeser.js | uglifyjs -mc > caeser.min.js"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,7 @@
     "karma-jshint-preprocessor": "0.0.6",
     "karma-phantomjs-launcher": "^1.0.0",
     "phantomjs-prebuilt": "^2.1.7",
+    "uglifyjs": "^2.4.10",
     "watchify": "^3.7.0"
   }
 }
