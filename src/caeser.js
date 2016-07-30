@@ -17,5 +17,6 @@ function decode(str) {
 
 module.exports = {
     encode: encode,
-    decode: decode
+    decode: decode,
+    decrypted: decryptMany
 };
