@@ -11,9 +11,14 @@ textarea {
     padding-bottom: 15px;
 }
 
-button {
+button, input {
     margin: 15px 0;
     padding: 10px;
+    text-align: center;
+}
+
+button.revealAll {
+    float: right;
 }
 
 ul {
