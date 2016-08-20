@@ -8,30 +8,14 @@
             <h1>Decryptor</h1>
         </header>
         <section class="input">
-            <textarea rows="7" cols="5" placeholder="Enter cipher here"></textarea>
-            <button>Decode</button>
+            <textarea id="cipherInput" rows="7" cols="5" placeholder="Enter cipher here"></textarea>
+            <button onclick="decrypt()">Decode</button>
         </section>
-        <section class="output"></section>
-        <section class="allResults">
-            <ul>
-                <li>
-                    <span>result </span>
-                    <span> entropy </span>
-                    <span> shift </span>                    
-                </li>
-                <li>
-                    result and entropy and shift count
-                </li>
-                <li>
-                    result and entropy and shift count
-                </li>
-                <li>
-                    result and entropy and shift count
-                </li>
-            </ul>
+        <section class="output">
+            <textarea id="decodedCipher" rows="7" cols="5" placeholder="Decoded cipher" disabled></textarea>
+            <button>Reveal all</button>
         </section>
         <footer></footer>
-        <script src="caeser.js"></script>
         <script src="main.js"></script>
     </body>
 </html>

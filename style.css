@@ -12,7 +12,7 @@ textarea {
 }
 
 button {
-    margin-top: 15px;
+    margin: 15px 0;
     padding: 10px;
 }
 
@@ -22,14 +22,15 @@ ul {
 }
 
 ul li {
-    height: 15px;
+    /*height: 15px;*/
     border: 1px solid blue;
-    padding: 10px;
+    /*padding: 10px;*/
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 ul li span {
-    height: 10px;
-    padding: 10px;
+    /*height: 10px;*/
+    /*padding: 10px;*/
     border-left: 1px solid blue;
 }
