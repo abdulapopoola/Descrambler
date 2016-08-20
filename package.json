@@ -7,8 +7,8 @@
     "docs": "jsdoc2md src/*.js > docs/api.md",
     "lint": "jshint src tests",
     "test": "karma start",
-    "build": "browserify src/caeser.js > caeser.js; browserify src/ui.js --s decrypt > main.js",
-    "build:min": "browserify src/caeser.js | uglifyjs -mc > caeser.min.js"
+    "build": "browserify src/caeser.js > dist/caeser.js; browserify src/ui.js --s decrypt > main.js",
+    "build:min": "browserify src/caeser.js | uglifyjs -mc > dist/caeser.min.js"
   },
   "repository": {
     "type": "git",
