@@ -11,7 +11,7 @@
     </header>
     <section class="input">
         <textarea rows="3" id="cipherInput" cols="5" placeholder="Enter cipher here">QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD.</textarea>
-        <button onclick="decrypt()">Decode</button>
+        <button onclick="ui.decode()">Decode</button>
     </section>
     <section class="output">
         <textarea rows="3" id="decodedCipher" cols="5" placeholder="Decoded cipher" disabled></textarea>
@@ -22,7 +22,7 @@
             <input disabled="disabled" type="number" value="2.3399887788887873" title="2.3399887788887873" />
             <button disabled>Rank</button>
             <input disabled="disabled" type="number" value="1" />
-            <button class="revealAll">Reveal all</button>
+            <button onclick="ui.revealAllInfo()" class="revealAll">Reveal all</button>
         </div>
     </section>
     <section class="results">

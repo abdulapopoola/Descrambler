@@ -7,7 +7,7 @@
     "docs": "jsdoc2md src/*.js > docs/api.md",
     "lint": "jshint src tests",
     "test": "karma start",
-    "build": "browserify src/caeser.js > dist/caeser.js; browserify src/ui.js --s decrypt > ui/main.js",
+    "build": "browserify src/caeser.js > dist/caeser.js; browserify src/ui.js --s ui > ui/main.js",
     "build:min": "browserify src/caeser.js | uglifyjs -mc > dist/caeser.min.js"
   },
   "repository": {
@@ -28,17 +28,18 @@
   },
   "homepage": "https://github.com/abdulapopoola/Descrambler#readme",
   "devDependencies": {
-    "browserify": "^13.0.1",
-    "jasmine-core": "^2.4.1",
-    "jscs": "^3.0.3",
-    "jsdoc-to-markdown": "^1.3.6",
-    "jshint": "^2.9.2",
+    "browserify": "^13.1.1",
+    "jasmine-core": "^2.5.2",
+    "jscs": "^3.0.7",
+    "jsdoc-to-markdown": "^1.3.8",
+    "jshint": "^2.9.4",
     "karma": "^0.13.22",
-    "karma-browserify": "^5.0.5",
+    "karma-browserify": "^5.1.0",
     "karma-jasmine": "^1.0.2",
     "karma-jshint-preprocessor": "0.0.6",
-    "karma-phantomjs-launcher": "^1.0.0",
-    "phantomjs-prebuilt": "^2.1.7",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "phantomjs-prebuilt": "^2.1.13",
+    "sinon": "^1.17.6",
     "uglifyjs": "^2.4.10",
     "watchify": "^3.7.0"
   }

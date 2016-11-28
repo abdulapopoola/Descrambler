@@ -8,4 +8,13 @@ var decode = function () {
     document.getElementById('decodedCipher').value = decoded;
 };
 
-module.exports = decode;
+var updateUIElements = function () {
+    var cipherInput = document.getElementById('cipherInput').value;
+    var decoded = caeser.decode(cipherInput);
+    document.getElementById('decodedCipher').value = decoded;
+};
+
+module.exports = {
+    decode: decode,
+    revealAllInfo: updateUIElements
+};
