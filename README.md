@@ -1,4 +1,4 @@
-# descrambler
+# Descrambler
 
 Automatically descramble jumbled text using entropy calculations.
 
